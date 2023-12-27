@@ -27,7 +27,7 @@ def clean_up(dirty_file, clean_file):
 def gather_data():
     stock_name = 'TSLA'
     time = '1d'
-    raw_file = 'real_world_stock_market_dataMining/tsla_data_raw.csv'
+    raw_file = 'stock_dataMining/tsla_data_raw.csv'
     start_date, end_date = "2021-06-01", "2023-12-31"
     data = yf.download(stock_name, start=start_date, end=end_date, interval=time)
     data.to_csv(raw_file)
@@ -61,9 +61,9 @@ def featured_stats(df, file_name):
 def main():
     data_file = gather_data()
     df = pd.read_csv(data_file)
-    featured_file = "real_world_stock_market_dataMining/tsla_data_featured.csv"
+    featured_file = "stock_dataMining/tsla_data_featured.csv"
     featured_stats(df, featured_file)
-    clean_file = "real_world_stock_market_dataMining/tsla_data_clean_featured.csv"
+    clean_file = "stock_dataMining/tsla_data_clean_featured.csv"
     clean_up(featured_file, clean_file)
 
     df = pd.read_csv(clean_file)
@@ -143,7 +143,7 @@ def main():
 
     # Write the best results to file with matrix formatting
     if best_forecast_matrix is not None and best_actual_values is not None:
-        with open("real_world_stock_market_dataMining/prediction_evaluation_best.txt", "w") as output_file:
+        with open("stock_dataMining/prediction_evaluation_best.txt", "w") as output_file:
             output_file.write(f"Best RMSE:\n{best_rmse}\n")
             output_file.write(f"Mean Squared Error:\n{best_mse}\n")
             output_file.write(f"Forecasted Values:\n{best_forecast_matrix}\n")
